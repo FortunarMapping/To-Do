@@ -13,7 +13,10 @@ npm run preview  # ดูผลลัพธ์จาก build
 
 ## โครงสร้าง
 
-- `src/App.jsx` – หน้าหลัก, state, ฟอร์มเพิ่มรายการ, แท็บกรอง
+- `src/App.jsx` – หน้าหลัก, state, ฟอร์มเพิ่มรายการ, ค้นหา, แท็บกรอง
+- `src/components/CategorySidebar.jsx` – ตัวกรองหมวดหมู่พร้อมจำนวน
+- `src/components/StatsCard.jsx` – สถิติและโดนัทชาร์ต
+- `src/utils.js` – ฟังก์ชันวันที่และสถานะวันครบกำหนด
 - `src/components/TodoItem.jsx` – แต่ละรายการ (ติ๊ก, แก้ไขด้วยดับเบิลคลิก, ลบพร้อมอนิเมชัน)
 - `src/constants.js` – ระดับความสำคัญและตัวกรอง
 - `src/index.css` – Tailwind และธีมสี (รองรับโหมดมืดตามอุปกรณ์)

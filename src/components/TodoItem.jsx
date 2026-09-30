@@ -1,6 +1,7 @@
 import { useState, useRef, useEffect } from 'react'
-import { Trash2, Check } from 'lucide-react'
-import { PRIORITIES } from '../constants'
+import { Trash2, Check, CalendarDays } from 'lucide-react'
+import { PRIORITIES, CATEGORIES } from '../constants'
+import { dueStatus, formatDate } from '../utils'
 
 export default function TodoItem({ todo, onToggle, onDelete, onEdit }) {
   const [editing, setEditing] = useState(false)
@@ -28,6 +29,11 @@ export default function TodoItem({ todo, onToggle, onDelete, onEdit }) {
   }
 
   const p = PRIORITIES[todo.priority]
+  const c = CATEGORIES[todo.category]
+  const due = todo.done ? null : dueStatus(todo)
+  const dueClass = due === 'overdue' ? 'p-high' : due === 'today' ? 'p-mid' : ''
+  const dueLabel =
+    due === 'today' ? 'วันนี้' : due === 'overdue' ? `เกินกำหนด ${formatDate(todo.dueDate)}` : todo.dueDate && formatDate(todo.dueDate)
 
   return (
     <li className={`todo-item ${removing ? 'out' : ''}`}>
@@ -78,6 +84,17 @@ export default function TodoItem({ todo, onToggle, onDelete, onEdit }) {
               {todo.text}
             </span>
           )}
+          <div className="flex flex-wrap items-center gap-1.5 mt-1.5">
+            <span className={`text-xs font-medium px-2 py-0.5 rounded-full ${c.tag}`}>{c.label}</span>
+            {todo.dueDate && (
+              <span
+                className={`inline-flex items-center gap-1 text-xs px-2 py-0.5 rounded-full ${dueClass}`}
+                style={dueClass ? undefined : { color: 'var(--muted)', background: 'var(--bg)' }}
+              >
+                <CalendarDays size={12} /> {dueLabel}
+              </span>
+            )}
+          </div>
         </div>
 
         <span className={`shrink-0 text-xs font-medium px-2.5 py-1 rounded-full ${p.badge}`}>{p.label}</span>

@@ -77,3 +77,19 @@ button:focus-visible {
 @media (prefers-reduced-motion: reduce) {
   .todo-item { transition: none; }
 }
+
+:root { color-scheme: light dark; }
+
+@layer components {
+  .t-work { background: #e4ebff; color: #2b4bc4; }
+  .t-personal { background: #f0e6ff; color: #6b35b8; }
+  .t-shopping { background: #ffe6f0; color: #b8306a; }
+  .t-health { background: #dcf5f2; color: #0f7a6e; }
+}
+
+@media (prefers-color-scheme: dark) {
+  .t-work { background: #1f2a55; color: #9fb4ff; }
+  .t-personal { background: #33214f; color: #d0a8ff; }
+  .t-shopping { background: #4a1e33; color: #ff9fc4; }
+  .t-health { background: #123a36; color: #7fe0d3; }
+}
